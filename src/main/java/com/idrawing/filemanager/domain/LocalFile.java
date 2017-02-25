@@ -33,11 +33,11 @@ public class LocalFile {
     }
 
     public String getName() {
-        return getNameWithoutExtension(path.toAbsolutePath().toString().toLowerCase());
+        return getNameWithoutExtension(path.toAbsolutePath().toString());
     }
 
     public String getExtension() {
-        return getFileExtension(path.toAbsolutePath().toString().toLowerCase());
+        return getFileExtension(path.toAbsolutePath().toString());
     }
 
     public String getPathString() {

@@ -8,12 +8,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -310,7 +308,8 @@ public class LocalFileManagerTest {
     public void shouldSearchFilesByCriteria() throws IOException {
         //given
         FileCriteria criteria = new FileCriteria();
-        criteria.setRegExp("\\.*cdw");
+        criteria.setPaths(Arrays.asList(Paths.get("C:/")));
+        criteria.setExtensions(Arrays.asList("cdw", "pdf"));
 
         //when
         Collection<LocalFile> result = fileManager.findByCriteria(criteria);

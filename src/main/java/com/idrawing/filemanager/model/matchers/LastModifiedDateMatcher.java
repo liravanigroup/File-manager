@@ -5,7 +5,7 @@ import org.apache.commons.validator.routines.LongValidator;
 
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.ZoneOffset;
 
 /**
@@ -24,8 +24,8 @@ public class LastModifiedDateMatcher extends MatchChain {
                 && nextMatcher.match(file, attrs);
     }
 
-    private long defaultIfNull(LocalDateTime date, Long dateMilliseconds) {
-        return date == null ? dateMilliseconds : date.toInstant(ZoneOffset.UTC).toEpochMilli();
+    private long defaultIfNull(LocalDate date, Long dateMilliseconds) {
+        return date == null ? dateMilliseconds : date.atStartOfDay().toInstant(ZoneOffset.UTC).toEpochMilli();
     }
 
     private boolean isMatch(BasicFileAttributes attrs, long from, long to) {

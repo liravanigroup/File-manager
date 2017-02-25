@@ -12,21 +12,21 @@ import static org.apache.commons.lang3.StringUtils.containsIgnoreCase;
 /**
  * Created by Admin on 25.02.2017.
  */
-public class NameMatcher extends MatchChain {
-    public NameMatcher(MatchChain nextMatcher, FileCriteria criteria) {
+public class PathMatcher extends MatchChain {
+    public PathMatcher(MatchChain nextMatcher, FileCriteria criteria) {
         super(nextMatcher, criteria);
     }
 
     @Override
     public boolean match(Path file, BasicFileAttributes attrs) {
-        if(isNullOrEmpty(criteria.getFileName())){
+        if(isNullOrEmpty(criteria.getPartOfPath())){
             return nextMatcher.match(file, attrs);
         }else {
-            return isMatch(criteria.getFileName(), file) && nextMatcher.match(file, attrs);
+            return isMatch(criteria.getPartOfPath(), file) && nextMatcher.match(file, attrs);
         }
     }
 
-    private boolean isMatch(String fileName, Path file) {
-        return containsIgnoreCase(getNameWithoutExtension(file.toAbsolutePath().toString()), fileName);
+    private boolean isMatch(String filePath, Path file) {
+        return containsIgnoreCase(file.toAbsolutePath().toString(), filePath);
     }
 }

@@ -23,6 +23,11 @@ public class CriteriaSearchVisitor extends SimpleFileVisitor<Path>{
     private Collection<LocalFile> searchResult;
 
     @Override
+    public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
+        return FileVisitResult.CONTINUE;
+    }
+
+    @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         if (attrs.isRegularFile() && isMatchCriteria(file, attrs))
             searchResult.add(new LocalFile(file));
@@ -37,12 +42,18 @@ public class CriteriaSearchVisitor extends SimpleFileVisitor<Path>{
         MatchChain nameMatcher = new NameMatcher(fileSizeMatcher, criteria);
         MatchChain extensionMatcher = new ExtensionMatcher(nameMatcher, criteria);
         MatchChain pathRegExpMatcher = new PathRegExpMatcher(extensionMatcher, criteria);
-        MatchChain filter = new ExtensionMatcher(pathRegExpMatcher, criteria);
+        MatchChain pathMatcher = new PathMatcher(pathRegExpMatcher, criteria);
+        MatchChain filter = new ExtensionMatcher(pathMatcher, criteria);
         return filter.match(file, attributes);
     }
 
     @Override
     public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
+        return FileVisitResult.CONTINUE;
+    }
+
+    @Override
+    public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
         return FileVisitResult.CONTINUE;
     }
 }

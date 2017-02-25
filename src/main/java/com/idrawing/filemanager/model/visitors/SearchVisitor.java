@@ -1,17 +1,18 @@
 package com.idrawing.filemanager.model.visitors;
 
-import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
-import com.google.common.io.Files;
 import com.idrawing.filemanager.domain.LocalFile;
-import lombok.*;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.FileVisitor;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.stream.Stream;
 
 import static com.google.common.io.Files.getFileExtension;

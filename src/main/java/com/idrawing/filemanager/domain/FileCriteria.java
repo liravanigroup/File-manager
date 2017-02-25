@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.nio.file.Path;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Collection;
 
 /**
@@ -18,9 +18,10 @@ import java.util.Collection;
 @NoArgsConstructor
 public class FileCriteria {
     private Collection<Path> paths;
-    private String fileName, partOfPath, extension, regExp;
+    private String fileName, partOfPath, regExp;
+    private Collection<String> extensions;
     private Long fileSizeMin, fileSizeMax;
-    private LocalDateTime creationDateFrom, creationDateTo;
-    private LocalDateTime lastModifiedDateFrom, lastModifiedDateTo;
-    private LocalDateTime lastAccessDateFrom, lastAccessDateTo;
+    private LocalDate creationDateFrom, creationDateTo;
+    private LocalDate lastModifiedDateFrom, lastModifiedDateTo;
+    private LocalDate lastAccessDateFrom, lastAccessDateTo;
 }
