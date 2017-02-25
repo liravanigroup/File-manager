@@ -37,7 +37,7 @@ public class LocalFile {
     }
 
     public String getExtension() {
-        return getFileExtension(path.toAbsolutePath().toString());
+        return getFileExtension(path.toAbsolutePath().toString().toLowerCase());
     }
 
     public String getPathString() {
