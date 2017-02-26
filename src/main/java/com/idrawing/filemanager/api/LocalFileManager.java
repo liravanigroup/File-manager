@@ -6,6 +6,8 @@ import com.idrawing.filemanager.model.visitors.CleanDirVisitor;
 import com.idrawing.filemanager.model.visitors.CopyDirVisitor;
 import com.idrawing.filemanager.model.visitors.CriteriaSearchVisitor;
 import com.idrawing.filemanager.model.visitors.DeleteVisitor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.FileSystems;
@@ -19,6 +21,8 @@ import java.util.Collection;
  * Created by Sergej Povzanyuk on 07.08.2016.
  */
 public class LocalFileManager implements FileManager {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(LocalFileManager.class);
 
     @Override
     public Iterable<Path> getDiscsList() {
@@ -81,6 +85,7 @@ public class LocalFileManager implements FileManager {
         Collection<LocalFile> result = new ArrayList<>();
         CriteriaSearchVisitor csv = new CriteriaSearchVisitor(criteria, result);
         criteria.getPaths().parallelStream().forEach(path -> {try {Files.walkFileTree(path, csv);} catch (IOException ignored) {}});
+        LOGGER.info(String.valueOf(result.size()));
         return result;
     }
 }
