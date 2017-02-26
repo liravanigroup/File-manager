@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
  */
 public class FileCRUDTest {
 
-    private static final String TEST_PATH = "src/test/java/fixture/";
+    private static final String TEST_PATH = "src/test/resources/fixture/";
     private FileCRUD fileManager;
 
     @Before

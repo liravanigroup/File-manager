@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class LocalFileManagerTest {
 
-    private static final String TEST_PATH = "src/test/java/fixture/";
+    private static final String TEST_PATH = "src/test/resources/fixture/";
     private FileManager fileManager;
 
     @Before

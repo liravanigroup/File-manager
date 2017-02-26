@@ -4,9 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.*;
-import java.nio.file.attribute.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 
 import static org.junit.Assert.assertEquals;
@@ -16,7 +15,7 @@ import static org.junit.Assert.assertNotNull;
  * Created by Sergej Povzanyuk on 07.08.2016.
  */
 public class LocalFileTest {
-    private static final Path PATH_TO_TEST_FILE = Paths.get("src/test/java/fixture/metadata/metadata.docx");
+    private static final Path PATH_TO_TEST_FILE = Paths.get("src/test/resources/fixture/metadata/metadata.docx");
     private static LocalFile localFile;
 
     @Before

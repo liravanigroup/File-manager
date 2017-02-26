@@ -22,7 +22,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class FileSearcherTest {
 
-    private static final Path TEST_PATH = Paths.get("src/test/java/fixture/");
+    private static final Path TEST_PATH = Paths.get("src/test/resources/fixture/");
     private FileSearcher fileManager;
     private FileCriteria criteria;
 

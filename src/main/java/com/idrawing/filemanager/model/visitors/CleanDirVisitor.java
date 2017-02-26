@@ -21,12 +21,8 @@ public class CleanDirVisitor extends SimpleFileVisitor<Path> {
 
     @Override
     public FileVisitResult postVisitDirectory(Path directory, IOException exception) throws IOException {
-        if (exception == null) {
-            if(!from.equals(directory))
-                Files.delete(directory);
-            return FileVisitResult.CONTINUE;
-        } else {
-            throw exception;
-        }
+        if (exception == null && !from.equals(directory))
+            Files.delete(directory);
+        return FileVisitResult.CONTINUE;
     }
 }
