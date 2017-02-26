@@ -3,6 +3,7 @@ package com.idrawing.filemanager.domain;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.*;
@@ -118,6 +119,15 @@ public class LocalFileTest {
     public void shouldShowToString(){
         //when
         String result = localFile.toString();
+
+        //then
+        assertNotNull(result);
+    }
+
+    @Test
+    public void shouldGetFile() throws Exception {
+        //when
+        File result = localFile.getFile();
 
         //then
         assertNotNull(result);

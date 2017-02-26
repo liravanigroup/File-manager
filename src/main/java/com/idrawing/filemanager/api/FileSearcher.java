@@ -14,13 +14,5 @@ import java.util.List;
  * Created by Admin on 19.02.2017.
  */
 public interface FileSearcher {
-    Collection<LocalFile> findFilesByExtension(Path startPath, String ... extension) throws IOException;
-
-    Collection<LocalFile> findAllFilesByExtension(String ... extension) throws IOException;
-
-    Collection<LocalFile> findFilesByExtensionPathSet(Iterable<Path> paths, String ... extension) throws IOException;
-
-    Collection<LocalFile> findAllFilesBetweenTwoDates(LocalDateTime from, LocalDateTime to, String ... extension) throws IOException;
-
-    Collection<LocalFile> findByCriteria(FileCriteria fileCriteria) throws IOException;
+   Collection<LocalFile> findByCriteria(FileCriteria fileCriteria) throws IOException;
 }

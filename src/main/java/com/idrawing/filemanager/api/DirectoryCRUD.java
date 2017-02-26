@@ -10,6 +10,8 @@ public interface DirectoryCRUD {
 
     Path createDirectory(Path directory) throws IOException;
 
+    boolean rename(Path oldPath, Path newPath) throws IOException;
+
     Path deleteDirectory(Path directory) throws IOException;
 
     Path cleanDirectory(Path directory) throws IOException;

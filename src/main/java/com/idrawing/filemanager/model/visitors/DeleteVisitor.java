@@ -19,11 +19,8 @@ public class DeleteVisitor extends SimpleFileVisitor<Path> {
 
     @Override
     public FileVisitResult postVisitDirectory(Path directory, IOException exception) throws IOException {
-        if (exception == null) {
+        if (exception == null)
             Files.delete(directory);
-            return FileVisitResult.CONTINUE;
-        } else {
-            throw exception;
-        }
+        return FileVisitResult.CONTINUE;
     }
 }

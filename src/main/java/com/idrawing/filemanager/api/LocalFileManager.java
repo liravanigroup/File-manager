@@ -77,35 +77,6 @@ public class LocalFileManager implements FileManager {
     }
 
     @Override
-    public Collection<LocalFile> findFilesByExtension(Path startPath, String... extension) throws IOException {
-        SearchVisitor sv = new SearchVisitor(extension);
-        Files.walkFileTree(startPath, sv);
-        return sv.getFiles();
-    }
-
-    @Override
-    public Collection<LocalFile> findAllFilesByExtension(String... extension) throws IOException {
-        return findFilesByExtensionPathSet(getDiscsList(), extension);
-    }
-
-    @Override
-    public Collection<LocalFile> findFilesByExtensionPathSet(Iterable<Path> paths, String... extension) throws IOException {
-        List<LocalFile> result = new ArrayList<>();
-        for (Path path : paths) {
-            result.addAll(findFilesByExtension(path, extension));
-        }
-        return result;
-    }
-
-    @Override
-    public Collection<LocalFile> findAllFilesBetweenTwoDates(LocalDateTime from, LocalDateTime to, String... extension) throws IOException {
-        return findAllFilesByExtension(extension)
-                .parallelStream()
-                .filter(localFile -> localFile.getCreationDate().isAfter(from) && localFile.getCreationDate().isBefore(to))
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public Collection<LocalFile> findByCriteria(FileCriteria criteria) throws IOException {
         Collection<LocalFile> result = new ArrayList<>();
         CriteriaSearchVisitor csv = new CriteriaSearchVisitor(criteria, result);

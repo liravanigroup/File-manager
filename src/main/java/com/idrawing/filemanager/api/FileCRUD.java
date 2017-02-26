@@ -10,6 +10,8 @@ public interface FileCRUD {
 
     void delete(Path file) throws IOException;
 
+    boolean rename(Path oldPath, Path newPath) throws IOException;
+
     Path create(Path file) throws IOException;
 
     Path move(Path from, Path to) throws IOException;
