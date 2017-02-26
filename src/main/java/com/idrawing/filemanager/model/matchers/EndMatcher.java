@@ -1,5 +1,7 @@
 package com.idrawing.filemanager.model.matchers;
 
+import com.idrawing.filemanager.domain.FileCriteria;
+
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 
@@ -8,8 +10,8 @@ import java.nio.file.attribute.BasicFileAttributes;
  */
 public class EndMatcher extends MatchChain {
 
-    public EndMatcher() {
-        super(null, null);
+    public EndMatcher(FileCriteria criteria) {
+        super(null, criteria);
     }
 
     @Override

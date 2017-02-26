@@ -1,26 +1,24 @@
 package com.idrawing.filemanager.model.matchers;
 
-import com.idrawing.filemanager.domain.FileCriteria;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.validator.routines.LongValidator;
 
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 
-import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
-
 /**
  * Created by Admin on 25.02.2017.
  */
 public class FileSizeMatcher extends MatchChain {
-    public FileSizeMatcher(MatchChain nextMatcher, FileCriteria criteria) {
-        super(nextMatcher, criteria);
+    public FileSizeMatcher(MatchChain nextMatcher) {
+        super(nextMatcher, nextMatcher.getCriteria());
     }
 
     @Override
     public boolean match(Path file, BasicFileAttributes attrs) {
         return isMatch(attrs,
-                defaultIfNull(criteria.getFileSizeMin(), Long.MIN_VALUE),
-                defaultIfNull(criteria.getFileSizeMax(), Long.MAX_VALUE))
+                ObjectUtils.defaultIfNull(criteria.getFileSizeMin(), Long.MIN_VALUE),
+                ObjectUtils.defaultIfNull(criteria.getFileSizeMax(), Long.MAX_VALUE))
                 && nextMatcher.match(file, attrs);
     }
 

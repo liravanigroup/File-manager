@@ -1,19 +1,16 @@
 package com.idrawing.filemanager.model.matchers;
 
-import com.idrawing.filemanager.domain.FileCriteria;
 import org.apache.commons.validator.routines.LongValidator;
 
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.time.LocalDate;
-import java.time.ZoneOffset;
 
 /**
  * Created by Admin on 25.02.2017.
  */
 public class LastModifiedDateMatcher extends MatchChain {
-    public LastModifiedDateMatcher(MatchChain nextMatcher, FileCriteria criteria) {
-        super(nextMatcher, criteria);
+    public LastModifiedDateMatcher(MatchChain nextMatcher) {
+        super(nextMatcher, nextMatcher.getCriteria());
     }
 
     @Override
@@ -22,10 +19,6 @@ public class LastModifiedDateMatcher extends MatchChain {
                 defaultIfNull(criteria.getLastModifiedDateFrom(), Long.MIN_VALUE),
                 defaultIfNull(criteria.getLastModifiedDateTo(), Long.MAX_VALUE))
                 && nextMatcher.match(file, attrs);
-    }
-
-    private long defaultIfNull(LocalDate date, Long dateMilliseconds) {
-        return date == null ? dateMilliseconds : date.atStartOfDay().toInstant(ZoneOffset.UTC).toEpochMilli();
     }
 
     private boolean isMatch(BasicFileAttributes attrs, long from, long to) {

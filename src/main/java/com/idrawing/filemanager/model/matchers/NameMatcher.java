@@ -1,7 +1,5 @@
 package com.idrawing.filemanager.model.matchers;
 
-import com.idrawing.filemanager.domain.FileCriteria;
-
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 
@@ -13,17 +11,13 @@ import static org.apache.commons.lang3.StringUtils.containsIgnoreCase;
  * Created by Admin on 25.02.2017.
  */
 public class NameMatcher extends MatchChain {
-    public NameMatcher(MatchChain nextMatcher, FileCriteria criteria) {
-        super(nextMatcher, criteria);
+    public NameMatcher(MatchChain nextMatcher) {
+        super(nextMatcher, nextMatcher.getCriteria());
     }
 
     @Override
     public boolean match(Path file, BasicFileAttributes attrs) {
-        if(isNullOrEmpty(criteria.getFileName())){
-            return nextMatcher.match(file, attrs);
-        }else {
-            return isMatch(criteria.getFileName(), file) && nextMatcher.match(file, attrs);
-        }
+        return isNullOrEmpty(criteria.getFileName()) ? nextMatcher.match(file, attrs) : isMatch(criteria.getFileName(), file) && nextMatcher.match(file, attrs);
     }
 
     private boolean isMatch(String fileName, Path file) {
