@@ -25,6 +25,11 @@
             <version>1.5.1</version>
         </dependency>
         <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.8.9</version>
+        </dependency>
+        <dependency>
             <groupId>com.landawn</groupId>
             <artifactId>abacus-util-all</artifactId>
             <version>0.9.52</version>

@@ -29,7 +29,6 @@ public class ExtensionMatcher extends MatchChain {
         }
     }
 
-
     private boolean isMatch(String extension, Path file) {
         return extension.equalsIgnoreCase(getFileExtension(file.toAbsolutePath().toString()));
     }
