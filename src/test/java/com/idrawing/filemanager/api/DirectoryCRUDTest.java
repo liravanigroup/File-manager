@@ -19,7 +19,6 @@ public class DirectoryCRUDTest {
     private DirectoryCRUD fileManager;
     private FileCRUD fileCRUD;
 
-
     @Before
     public void init() {
         fileManager = new LocalFileManager();

@@ -1,5 +1,7 @@
 package com.idrawing.filemanager.domain;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,6 +20,7 @@ import static com.google.common.io.Files.getNameWithoutExtension;
  * Created by Sergej Povzanyuk on 07.08.2016.
  */
 public class LocalFile {
+    private static final String UNKNOWN_ARGUMENT = "Unknown";
     private Path path;
     private BasicFileAttributes attributes;
 
@@ -67,15 +70,15 @@ public class LocalFile {
         try {
             return Files.getOwner(path).getName();
         } catch (IOException e) {
-            return "Unknown";
+            return UNKNOWN_ARGUMENT;
         }
     }
 
     public String getContentType() {
         try {
-            return Files.probeContentType(path);
+            return StringUtils.defaultIfEmpty(Files.probeContentType(path), UNKNOWN_ARGUMENT);
         } catch (IOException e) {
-            return "Unknown";
+            return UNKNOWN_ARGUMENT;
         }
     }
 
@@ -89,6 +92,11 @@ public class LocalFile {
 
     public File getFile() {
         return path.toFile();
+    }
+
+    @Override
+    public String toString() {
+        return getPathString();
     }
 
     private class EmptyFileAttributes implements BasicFileAttributes {
